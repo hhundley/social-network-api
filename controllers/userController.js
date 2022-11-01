@@ -2,14 +2,14 @@ const { ObjectId } = require('mongoose').Types;
 const { User, Thought } = require('../models');
 
 const userCount = async () =>
-  Student.aggregate()
+  User.aggregate()
     .count('userCount')
     .then((numberOfUsers) => numberOfUsers);
 
 module.exports = {
     // GET all users
     getAllUsers(req,res) {
-        Student.find()
+        User.find()
         .then(async (user) => {
           const userObj = {
             user,

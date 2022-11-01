@@ -6,7 +6,7 @@
   An api built for a scial networking startup using a nonrelational database
   
   ## Link to video of routes being tested
-  * [https://drive.google.com/file/d/1T0zLv21fIsMQ8zIW_1w_5sUgkVO4MbVr/view]
+  * https://drive.google.com/file/d/1T0zLv21fIsMQ8zIW_1w_5sUgkVO4MbVr/view
   
   ## Table of Contents
   * [Installation](#installation)

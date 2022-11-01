@@ -10,9 +10,9 @@ module.exports = {
     // GET all users
     getAllUsers(req,res) {
         Student.find()
-        .then(async (users) => {
+        .then(async (user) => {
           const userObj = {
-            users,
+            user,
             userCount: await userCount(),
           };
           return res.json(userObj);
@@ -24,7 +24,7 @@ module.exports = {
     },
     // GET single user
     getSingleUser(req,res) {
-        User.findOne({ _id: req.params.id })
+        User.findOne({ _id: req.params.userId })
         .populate({
             path: 'thoughts',
             select: '-__v',
@@ -37,7 +37,7 @@ module.exports = {
         .then(async (user) =>
         !user
           ? res.status(404).json({ message: 'No user with that ID' })
-          : res.json({user})
+          : res.json(user)
       )
       .catch((err) => {
         console.log(err);
@@ -77,6 +77,7 @@ module.exports = {
         })
         .catch((err) => res.status(500).json(err));
     },
+    // POST friend
     addFriend(req, res) {
       User.findOneAndUpdate(
         { _id: req.params.userId },

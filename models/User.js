@@ -31,13 +31,12 @@ const userSchema = new Schema(
     virtuals: true,
     getters: true,
   },
-  id: false,
 });
 //  add a virtual for length of friends array
 userSchema.virtual('friendCount').get(function () {
     return this.friends.length;
 });
 
-const User = model('user', userSchema);
+const User = model('User', userSchema);
 
 module.exports = User;

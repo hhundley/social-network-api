@@ -24,7 +24,7 @@ module.exports = {
     },
     // GET single user
     getSingleUser(req,res) {
-        User.findOne({ _id: req.params.userId })
+        User.findOne({ _id: req.params._id })
         .populate({
             path: 'thoughts',
             select: '-__v',
@@ -52,7 +52,7 @@ module.exports = {
     },
     // PUT existing user
     updateUser(req, res) {
-      User.findOneAndUpdate({ _id: req.params.userId }, {$set: req.body }, {
+      User.findOneAndUpdate({ _id: req.params._id }, {$set: req.body }, {
         new: true,
         runValidators: true, new: true
       })
@@ -67,7 +67,7 @@ module.exports = {
     },
     // DELETE a user
     deleteUser(req, res) {
-      User.findOneAndDelete({ _id: req.params.userId })
+      User.findOneAndDelete({ _id: req.params._id })
         .then((user) => {
           if (!user) {
             res.status(404).json({ message: 'user not found' });
@@ -80,7 +80,7 @@ module.exports = {
     // POST friend
     addFriend(req, res) {
       User.findOneAndUpdate(
-        { _id: req.params.userId },
+        { _id: req.params._id },
         { $addToSet: { friends: req.body } },
         { runValidators: true, new: true }
       )
@@ -96,7 +96,7 @@ module.exports = {
     // DELETE a friend
     deleteFriend(req, res) {
       User.findOneAndUpdate(
-        { _id: req.params.userId },
+        { _id: req.params._id },
         { $pull: { friends: {_id: req.params.friendId } } },
         { runValidators: true, new: true }
       )
